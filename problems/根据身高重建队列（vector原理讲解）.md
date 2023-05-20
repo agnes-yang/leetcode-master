@@ -1,18 +1,21 @@
+
 <p align="center">
-  <a href="https://mp.weixin.qq.com/s/RsdcQ9umo09R6cfnwXZlrQ"><img src="https://img.shields.io/badge/PDF下载-代码随想录-blueviolet" alt=""></a>
-  <a href="https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw"><img src="https://img.shields.io/badge/刷题-微信群-green" alt=""></a>
-  <a href="https://space.bilibili.com/525438321"><img src="https://img.shields.io/badge/B站-代码随想录-orange" alt=""></a>
-  <a href="https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ"><img src="https://img.shields.io/badge/知识星球-代码随想录-blue" alt=""></a>
-</p>
-<p align="center"><strong>欢迎大家<a href="https://mp.weixin.qq.com/s/tqCxrMEU-ajQumL1i8im9A">参与本项目</a>，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
+<a href="https://programmercarl.com/other/xunlianying.html" target="_blank">
+  <img src="../pics/训练营.png" width="1000"/>
+</a>
+<p align="center"><strong><a href="https://mp.weixin.qq.com/s/tqCxrMEU-ajQumL1i8im9A">参与本项目</a>，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
+
+
+
 # 贪心算法：根据身高重建队列（续集）
 
-在讲解[贪心算法：根据身高重建队列](https://mp.weixin.qq.com/s/-2TgZVdOwS-DvtbjjDEbfw)中，我们提到了使用vector（C++中的动态数组）来进行insert操作是费时的。
+在讲解[贪心算法：根据身高重建队列](https://programmercarl.com/0406.根据身高重建队列.html)中，我们提到了使用vector（C++中的动态数组）来进行insert操作是费时的。
 
-但是在解释的过程中有不恰当的地方，所以来专门写一篇文章来详细说一说这个问题。
+这里专门写一篇文章来详细说一说这个问题。
 
 使用vector的代码如下：
-```C++
+
+```CPP
 // 版本一，使用vector（动态数组）
 class Solution {
 public:
@@ -32,13 +35,15 @@ public:
 };
 
 ```
+
 耗时如下：
-![vectorinsert](https://img-blog.csdnimg.cn/20201218203611181.png)
+![vectorinsert](https://code-thinking-1253855093.file.myqcloud.com/pics/20201218203611181.png)
 
 其直观上来看数组的insert操作是O(n)的，整体代码的时间复杂度是O(n^2)。
 
 这么一分析好像和版本二链表实现的时间复杂度是一样的啊，为什么提交之后效率会差距这么大呢？
-```C++
+
+```CPP
 // 版本二，使用list（链表）
 class Solution {
 public:
@@ -65,7 +70,7 @@ public:
 
 耗时如下：
 
-![使用链表](https://img-blog.csdnimg.cn/20201218200756257.png)
+![使用链表](https://code-thinking-1253855093.file.myqcloud.com/pics/20201218200756257.png)
 
 大家都知道对于普通数组，一旦定义了大小就不能改变，例如int a[10];，这个数组a至多只能放10个元素，改不了的。
 
@@ -76,6 +81,7 @@ public:
 **首先vector的底层实现也是普通数组**。
 
 vector的大小有两个维度一个是size一个是capicity，size就是我们平时用来遍历vector时候用的，例如：
+
 ```
 for (int i = 0; i < vec.size(); i++) {
 
@@ -91,7 +97,7 @@ for (int i = 0; i < vec.size(); i++) {
 就是重新申请一个二倍于原数组大小的数组，然后把数据都拷贝过去，并释放原数组内存。（对，就是这么原始粗暴的方法！）
 
 举一个例子，如图：
-![vector原理](https://img-blog.csdnimg.cn/20201218185902217.png)
+![vector原理](https://code-thinking-1253855093.file.myqcloud.com/pics/20201218185902217.png)
 
 原vector中的size和capicity相同都是3，初始化为1 2 3，此时要push_back一个元素4。
 
@@ -99,15 +105,15 @@ for (int i = 0; i < vec.size(); i++) {
 
 **同时也注意此时capicity和size的变化，关键的地方我都标红了**。
 
-而在[贪心算法：根据身高重建队列](https://mp.weixin.qq.com/s/-2TgZVdOwS-DvtbjjDEbfw)中，我们使用vector来做insert的操作，此时大家可会发现，**虽然表面上复杂度是O(n^2)，但是其底层都不知道额外做了多少次全量拷贝了，所以算上vector的底层拷贝，整体时间复杂度可以认为是O(n^2 + t * n)级别的，t是底层拷贝的次数**。
+而在[贪心算法：根据身高重建队列](https://programmercarl.com/0406.根据身高重建队列.html)中，我们使用vector来做insert的操作，此时大家可会发现，**虽然表面上复杂度是O(n^2)，但是其底层都不知道额外做了多少次全量拷贝了，所以算上vector的底层拷贝，整体时间复杂度可以认为是O(n^2 + t × n)级别的，t是底层拷贝的次数**。
 
-那么是不是可以直接确定好vector的大小，不让它在动态扩容了，例如在[贪心算法：根据身高重建队列](https://mp.weixin.qq.com/s/-2TgZVdOwS-DvtbjjDEbfw)中已经给出了有people.size这么多的人，可以定义好一个固定大小的vector，这样我们就可以控制vector，不让它底层动态扩容。
+那么是不是可以直接确定好vector的大小，不让它在动态扩容了，例如在[贪心算法：根据身高重建队列](https://programmercarl.com/0406.根据身高重建队列.html)中已经给出了有people.size这么多的人，可以定义好一个固定大小的vector，这样我们就可以控制vector，不让它底层动态扩容。
 
 这种方法需要自己模拟插入的操作，不仅没有直接调用insert接口那么方便，需要手动模拟插入操作，而且效率也不高！
 
 手动模拟的过程其实不是很简单的，需要很多细节，我粗略写了一个版本，如下：
 
-```C++
+```CPP
 // 版本三
 // 使用vector，但不让它动态扩容
 class Solution {
@@ -131,9 +137,10 @@ public:
     }
 };
 ```
+
 耗时如下：
 
-![vector手动模拟insert](https://img-blog.csdnimg.cn/20201218200626718.png)
+![vector手动模拟insert](https://code-thinking-1253855093.file.myqcloud.com/pics/20201218200626718.png)
 
 这份代码就是不让vector动态扩容，全程我们自己模拟insert的操作，大家也可以直观的看出是一个O(n^2)的方法了。
 
@@ -147,7 +154,7 @@ public:
 
 所以对于两种使用数组的方法一和方法三，也不好确定谁优，但一定都没有使用方法二链表的效率高！
 
-一波分析之后，对于[贪心算法：根据身高重建队列](https://mp.weixin.qq.com/s/-2TgZVdOwS-DvtbjjDEbfw) ，大家就安心使用链表吧！别折腾了，哈哈，相当于我替大家折腾了一下。
+一波分析之后，对于[贪心算法：根据身高重建队列](https://programmercarl.com/0406.根据身高重建队列.html) ，大家就安心使用链表吧！别折腾了，哈哈，相当于我替大家折腾了一下。
 
 ## 总结
 
@@ -170,14 +177,50 @@ Java：
 
 Python：
 
+Rust：
+
+```rust
+// 版本二，使用list（链表）
+use std::collections::LinkedList;
+impl Solution{
+    pub fn reconstruct_queue(mut people: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        let mut queue = LinkedList::new();
+        people.sort_by(|a, b| {
+            if a[0] == b[0] {
+                return a[1].cmp(&b[1]);
+            }
+            b[0].cmp(&a[0])
+        });
+        queue.push_back(people[0].clone());
+        for v in people.iter().skip(1) {
+            if queue.len() > v[1] as usize {
+                let mut back_link = queue.split_off(v[1] as usize);
+                queue.push_back(v.clone());
+                queue.append(&mut back_link);
+            } else {
+                queue.push_back(v.clone());
+            }
+        }
+        queue.into_iter().collect()
+    }
+}
+```
+
 
 Go：
 
+Go中slice的`append`操作和C++中vector的扩容机制基本相同。
+
+说是基本呢，其实是因为大家平时刷题和工作中遇到的数据不会特别大。
+
+具体来说，当当前slice的长度小于**1024**时，执行`append`操作，新slice的capacity会变成当前的2倍；而当slice长度大于等于**1024**时，slice的扩容变成了每次增加当前slice长度的**1/4**。
+
+在Go Slice的底层实现中，如果capacity不够时，会做一个reslice的操作，底层数组也会重新被复制到另一块内存区域中，所以`append`一个元素，不一定是O(1), 也可能是O(n)哦。
 
 
 
------------------------
-* 作者微信：[程序员Carl](https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw)
-* B站视频：[代码随想录](https://space.bilibili.com/525438321)
-* 知识星球：[代码随想录](https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ)
-<div align="center"><img src=../pics/公众号.png width=450 alt=> </img></div>
+
+<p align="center">
+<a href="https://programmercarl.com/other/kstar.html" target="_blank">
+  <img src="../pics/网站星球宣传海报.jpg" width="1000"/>
+</a>

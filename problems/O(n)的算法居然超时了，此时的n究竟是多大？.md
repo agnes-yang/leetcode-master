@@ -1,11 +1,12 @@
+
 <p align="center">
-  <a href="https://mp.weixin.qq.com/s/RsdcQ9umo09R6cfnwXZlrQ"><img src="https://img.shields.io/badge/PDF下载-代码随想录-blueviolet" alt=""></a>
-  <a href="https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw"><img src="https://img.shields.io/badge/刷题-微信群-green" alt=""></a>
-  <a href="https://space.bilibili.com/525438321"><img src="https://img.shields.io/badge/B站-代码随想录-orange" alt=""></a>
-  <a href="https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ"><img src="https://img.shields.io/badge/知识星球-代码随想录-blue" alt=""></a>
-</p>
-<p align="center"><strong>欢迎大家<a href="https://mp.weixin.qq.com/s/tqCxrMEU-ajQumL1i8im9A">参与本项目</a>，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
+<a href="https://programmercarl.com/other/xunlianying.html" target="_blank">
+  <img src="../pics/训练营.png" width="1000"/>
+</a>
+<p align="center"><strong><a href="https://mp.weixin.qq.com/s/tqCxrMEU-ajQumL1i8im9A">参与本项目</a>，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
+
 # 程序提交之后为什么会超时？O(n)的算法会超时，n究竟是多大？
+
 
 
 一些同学可能对计算机运行的速度还没有概念，就是感觉计算机运行速度应该会很快，那么在leetcode上做算法题目的时候为什么会超时呢？
@@ -14,7 +15,7 @@
 
 # 超时是怎么回事
 
-![程序超时](https://img-blog.csdnimg.cn/20200729112716117.png)
+![程序超时](https://code-thinking-1253855093.file.myqcloud.com/pics/20200729112716117.png)
 
 大家在leetcode上练习算法的时候应该都遇到过一种错误是“超时”。
 
@@ -54,6 +55,7 @@
 尽管有很多因素影响，但是还是可以对自己程序的运行时间有一个大体的评估的。
 
 引用算法4里面的一段话：
+
 * 火箭科学家需要大致知道一枚试射火箭的着陆点是在大海里还是在城市中；
 * 医学研究者需要知道一次药物测试是会杀死还是会治愈实验对象；
 
@@ -65,9 +67,9 @@
 
 测试硬件：2015年MacPro，CPU配置：2.7 GHz Dual-Core Intel Core i5
 
-实现三个函数，时间复杂度分别是 O(n) , O(n^2), O(nlogn)，使用加法运算来统一测试。
+实现三个函数，时间复杂度分别是 O(n) , O(n^2), O(nlog n)，使用加法运算来统一测试。
 
-```C++
+```CPP
 // O(n)
 void function1(long long n) {
     long long k = 0;
@@ -78,7 +80,7 @@ void function1(long long n) {
 
 ```
 
-```C++
+```CPP
 // O(n^2)
 void function2(long long n) {
     long long k = 0;
@@ -91,7 +93,7 @@ void function2(long long n) {
 }
 ```
 
-```C++
+```CPP
 // O(nlogn)
 void function3(long long n) {
     long long k = 0;
@@ -105,7 +107,8 @@ void function3(long long n) {
 ```
 
 来看一下这三个函数随着n的规模变化，耗时会产生多大的变化，先测function1 ，就把 function2 和 function3 注释掉
-```C++
+
+```CPP
 int main() {
     long long n; // 数据规模
     while (1) {
@@ -128,11 +131,11 @@ int main() {
 
 来看一下运行的效果，如下图：
 
-![程序超时2](https://img-blog.csdnimg.cn/20200729200018460.png)
+![程序超时2](https://code-thinking-1253855093.file.myqcloud.com/pics/20200729200018460.png)
 
 O(n)的算法，1s内大概计算机可以运行 5 * (10^8)次计算，可以推测一下O(n^2) 的算法应该1s可以处理的数量级的规模是 5 * (10^8)开根号，实验数据如下。
 
-![程序超时3](https://img-blog.csdnimg.cn/2020072919590970.png)
+![程序超时3](https://code-thinking-1253855093.file.myqcloud.com/pics/2020072919590970.png)
 
 O(n^2)的算法，1s内大概计算机可以运行 22500次计算，验证了刚刚的推测。
 
@@ -140,7 +143,7 @@ O(n^2)的算法，1s内大概计算机可以运行 22500次计算，验证了刚
 
 理论上应该是比 O(n)少一个数量级，因为logn的复杂度 其实是很快，看一下实验数据。
 
-![程序超时4](https://img-blog.csdnimg.cn/20200729195729407.png)
+![程序超时4](https://code-thinking-1253855093.file.myqcloud.com/pics/20200729195729407.png)
 
 O(nlogn)的算法，1s内大概计算机可以运行 2 * (10^7)次计算，符合预期。
 
@@ -148,13 +151,13 @@ O(nlogn)的算法，1s内大概计算机可以运行 2 * (10^7)次计算，符�
 
 **整体测试数据整理如下：**
 
-![程序超时1](https://img-blog.csdnimg.cn/20201208231559175.png)
+![程序超时1](https://code-thinking-1253855093.file.myqcloud.com/pics/20201208231559175.png)
 
-至于O(logn) 和O(n^3) 等等这些时间复杂度在1s内可以处理的多大的数据规模，大家可以自己写一写代码去测一下了。
+至于O(log n)和O(n^3) 等等这些时间复杂度在1s内可以处理的多大的数据规模，大家可以自己写一写代码去测一下了。
 
 # 完整测试代码
 
-```C++
+```CPP
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -231,8 +234,7 @@ Go：
 
 
 
------------------------
-* 作者微信：[程序员Carl](https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw)
-* B站视频：[代码随想录](https://space.bilibili.com/525438321)
-* 知识星球：[代码随想录](https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ)
-<div align="center"><img src=../pics/公众号.png width=450 alt=> </img></div>
+<p align="center">
+<a href="https://programmercarl.com/other/kstar.html" target="_blank">
+  <img src="../pics/网站星球宣传海报.jpg" width="1000"/>
+</a>
