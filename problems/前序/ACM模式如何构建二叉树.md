@@ -1,4 +1,3 @@
-
 # 力扣上如何自己构造二叉树输入用例？
 
 **这里给大家推荐ACM模式练习网站**：[kamacoder.com](https://kamacoder.com)，把上面的题目刷完，ACM模式就没问题了。
@@ -419,4 +418,5 @@ func main() {
 ```
 
 -----------------------
+
 <div align="center"><img src=https://code-thinking.cdn.bcebos.com/pics/01二维码.jpg width=450> </img></div>
